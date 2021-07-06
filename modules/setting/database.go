@@ -5,6 +5,7 @@
 package setting
 
 import (
+	"code.gitea.io/gitea/modules/log"
 	"errors"
 	"fmt"
 	"net/url"
@@ -124,6 +125,8 @@ func DBConnStr() (string, error) {
 			Database.User, Database.Passwd, connType, Database.Host, Database.Name, Param, Database.Charset, tls)
 	case "postgres":
 		connStr = getPostgreSQLConnectionString(Database.Host, Database.User, Database.Passwd, Database.Name, Param, Database.SSLMode)
+		DbConnStr = connStr
+		log.Warn("PostgreSQL connection screen: %s", connStr)
 	case "mssql":
 		host, port := ParseMSSQLHostPort(Database.Host)
 		connStr = fmt.Sprintf("server=%s; port=%s; database=%s; user id=%s; password=%s;", host, port, Database.Name, Database.User, Database.Passwd)

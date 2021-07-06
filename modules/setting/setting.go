@@ -93,6 +93,8 @@ var (
 	// It maps to ini:"APP_DATA_PATH" and defaults to AppWorkPath + "/data"
 	AppDataPath string
 
+	DbConnStr string
+
 	// Server settings
 	Protocol             Scheme
 	Domain               string
